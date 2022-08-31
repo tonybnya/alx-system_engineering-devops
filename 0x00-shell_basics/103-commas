@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(ls -am | sed 's/, $//')"
+echo "$(ls -al | tr -s ' ' | cut -d ' ' -f 9 | tr '\n' ',' | sed 's/,$//')"
