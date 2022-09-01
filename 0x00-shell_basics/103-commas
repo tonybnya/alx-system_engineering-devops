@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "$(ls -al | tr -s ' ' | cut -d ' ' -f 9 | tr '\n' ',' | sed 's/,$//')"
+ls -map | sord -d
