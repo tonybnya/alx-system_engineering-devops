@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -depth -type d -empty -print
+find . -depth -empty -print
