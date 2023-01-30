@@ -1,9 +1,4 @@
 #!/usr/bin/env bash
 # This script displays a list of currently running processes.
 
-processes=$(ps -eo pid,tty,time,cmd)
-
-while read -r process
-do
-    echo "$process"
-done <<< "$processes"
+ps -aux --forest
