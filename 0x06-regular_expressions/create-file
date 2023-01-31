@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+read -rp "Enter a filename: " filename
+touch "$filename"
+chmod u+x "$filename"
+echo "#!/usr/bin/env ruby" > "$filename"
+
+echo "File $filename created!"
