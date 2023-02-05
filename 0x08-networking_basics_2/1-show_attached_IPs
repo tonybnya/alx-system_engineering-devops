@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script displays all active IPv4 IPs on the machine
+ips=$(ifconfig | grep 'inet' | grep -v 'inet6' | awk '{print $2}')
+
+for ip in $ips
+do
+    if [ "$ip" != "0.0.0.0" ]
+    then
+        echo "$ip"
+    fi
+done
