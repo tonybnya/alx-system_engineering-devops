@@ -1,0 +1,4 @@
+# SSH Clienf Configuration File
+Host 54.166.128.122
+    IdentityFile ~/.ssh/school
+    PasswordAuthentification no
