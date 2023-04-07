@@ -2,8 +2,4 @@
 # run apache on the holbertonschool/265-0 container
 
 service apache2 start
-docker run -p 8080:80 -d -it holbertonschool/265-0
-docker exec -it 3bbf5be60cc1 /bin/bash
-echo "Hello Holberton" > /var/www/html/index.html
-exit
 curl 0:8080
