@@ -3,8 +3,7 @@
 # Using curl must return a page contains the string "Hello World"
 
 echo -e "Updating and installing Nginx.\n"
-sudo apt-get update -y -qq && \
-	 sudo apt-get install nginx -y
+sudo apt-get update -y -qq && sudo apt-get install nginx -y
 
 echo -e "\nSetting up some minor stuff.\n"
 
