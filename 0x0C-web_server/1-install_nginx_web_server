@@ -2,17 +2,29 @@
 # Script to install nginx & configure it to listen on port 80
 # Using curl must return a page contains the string "Hello World"
 
-# Update
-sudo apt-get -y update
+echo -e "Updating and installing Nginx.\n"
+sudo apt-get update -y -qq && \
+	sudo apt-get install nginx -y
 
-# Install nginx
-sudo apt-get -y install nginx
+echo -e "\nSetting up some minor stuff.\n"
 
-# Configuring firewall to allow traffic on port 80
-sudo ufw allow 80/tcp
-
-# Creating index.html file with 'Hello World!'
-echo "Hello World!" > /var/www/html/index.html
-
-# Starting nginx
+# starting nginx service
 sudo service nginx start
+
+# allowing nginx on firewall
+sudo ufw allow 'Nginx HTTP'
+
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+# Backup default index
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+# Creating new index
+echo -e "Hello World!" | dd status=none of=/var/www/html/index.nginx-debian.html
+
+# Restarting nginx
+sudo service nginx restart
+
+echo -e "\nCompleted. ✅\n"
