@@ -3,13 +3,16 @@
 # Using curl must return a page contains the string "Hello World"
 
 # Update
-apt-get update
+sudo apt-get -y update
 
 # Install nginx
-apt-get install -y nginx
+sudo apt-get -y install nginx
+
+# Allowing nginx on Firewall
+sudo ufw allow 'Nginx HTTP'
 
 # Creating new index
-echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
-# Starting nginx
-service nginx start
+# Restarting nginx
+sudo service nginx restart
