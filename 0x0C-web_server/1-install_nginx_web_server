@@ -8,9 +8,6 @@ sudo apt -y update && sudo apt -y install nginx
 # Performing some setting
 echo -e "\nPerforming some setting.\n"
 
-# Starting Nginx
-sudo service nginx start
-
 # Adjusting the Firewall
 sudo ufw allow 'Nginx HTTP'
 
@@ -34,5 +31,5 @@ echo "server {
     server_name _;
 }" > /etc/nginx/sites-available/default
 
-# Restarting Nginx
-sudo service nginx restart
+# Starting Nginx
+sudo service nginx start
