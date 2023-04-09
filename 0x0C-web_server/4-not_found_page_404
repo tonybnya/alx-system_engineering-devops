@@ -6,9 +6,6 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-# Start Nginx
-sudo service nginx start
-
 # Adjust Firewall to allow access to Nginx
 sudo ufw allow 'Nginx HTTP'
 
@@ -16,8 +13,7 @@ sudo ufw allow 'Nginx HTTP'
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
 
 # Add the error_page directive to the Nginx configuration file
-sudo sed -i 's/#error_page 404/error_page 404/g' /etc/nginx/nginx.conf
-sudo sed -i 's/#location \/ {/location \/ {\n        error_page 404 \/404.html;\n        return 404;\n    }/g' /etc/nginx/nginx.conf
+sudo sed -i 's/#error_page 404/error_page 404 \/\n        location \/404.html {\n        internal;\n        }/g' /etc/nginx/sites-enabled/default
 
-# Restart Nginx
-sudo service nginx restart
+# Start Nginx
+sudo service nginx start
