@@ -1,21 +1,16 @@
 #!/usr/bin/env bash
 # Install Nginx where it should be listening on port 80
 
-# Updating package list and installing Nginx
-sudo apt-get -y update
-sudo apt-get -y install nginx
+# Update package list and install Nginx
+sudo apt-get update
+sudo apt-get install nginx -y
 
-# Adjusting the Firewall
-sudo ufw allow 'Nginx HTTP'
+# Configure Nginx to listen on port 80
+sudo sed -i 's/listen\s*80;/listen 80 default_server;/g' /etc/nginx/sites-available/default
 
-# Assigning ownership with the $USER environment variable
-sudo chown -R "$USER":"$USER" /var/www/html
+# Restart Nginx
+sudo kill "$(cat /var/run/nginx.pid)"
+sudo /usr/sbin/nginx
 
-# Setting up default file permissions
-sudo chmod -R 755 /var/www
-
-# Creating index.html file containing the string 'Hello World!'
-echo "Hello World!" > /var/www/html/index.html
-
-# Starting Nginx
-sudo service nginx start
+# Create afile containing "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html > dev null
