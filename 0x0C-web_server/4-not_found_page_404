@@ -10,7 +10,7 @@ sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 
 # Create a 404.html file containing the given string
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
+echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
 
 # Add the error_page directive to the Nginx configuration file
 sudo sed -i 's/#error_page 404/error_page 404/g' /etc/nginx/nginx.conf
