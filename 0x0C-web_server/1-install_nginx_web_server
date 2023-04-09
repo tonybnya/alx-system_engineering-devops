@@ -23,7 +23,7 @@ sudo apt-get install nginx -y
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # Configure Nginx to listen on port 80
-#sudo sed -i "s/listen 80 default_server;/listen 80;/g" /etc/nginx/sites-available/default
+sudo sed -i "s/listen 80 default_server;/listen 80;/g" /etc/nginx/sites-available/default
 
 # Restart Nginx
 sudo kill -s HUP "$(cat /var/run/nginx.pid)"
