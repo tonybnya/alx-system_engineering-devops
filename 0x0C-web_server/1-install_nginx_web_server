@@ -22,13 +22,15 @@ sudo chmod -R 755 /var/www
 
 # Creating index.html file containing the string 'Hello World!'
 echo "Hello World!" > /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.htm
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
 
 # Configuring Nginx to listen on port 80 and serve the index.html file
 echo "server {
     listen 80 default_server;
     listen [::]:80 default_server;
     root /var/www/html;
-    index index.html;
+    index index.html index.htm index.nginx-debian.html;
     server_name _;
 }" > /etc/nginx/sites-available/default
 
