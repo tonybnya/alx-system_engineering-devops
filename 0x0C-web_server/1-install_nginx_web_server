@@ -18,3 +18,6 @@ sudo sed -i 's/listen 80 default_server;/listen 80;/g' /etc/nginx/sites-availabl
 
 # Restart Nginx
 service nginx restart
+
+# Check that Nginx is serving the "Hello World!" message
+curl http://localhost
