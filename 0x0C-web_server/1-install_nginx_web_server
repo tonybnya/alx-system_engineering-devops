@@ -12,7 +12,7 @@ sudo sed -i "s/listen\s*80;/listen 80 default_server;/g" /etc/nginx/sites-availa
 sudo service nginx start
 
 # Create a file containing the string "Hello World!"
-echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Hello World!" | dd status=none of=/var/www/html/index.html
 
 # Test Nginx querying its root with curl
 curl http://localhost/
