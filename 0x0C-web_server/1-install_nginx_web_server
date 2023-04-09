@@ -10,7 +10,7 @@ sudo apt-get update
 sudo apt-get install nginx -y
 
 # Start Nginx
-# sudo service nginx start
+sudo service nginx start
 
 # # Configure firewall to allow traffic on port 80
 # sudo ufw allow 'Nginx HTTP'
