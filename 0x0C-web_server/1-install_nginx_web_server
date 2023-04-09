@@ -26,4 +26,5 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 sudo sed -i "s/listen 80 default_server;/listen 80;/g" /etc/nginx/sites-available/default
 
 # Restart Nginx
-sudo kill -s HUP "$(cat /var/run/nginx.pid)"
+#sudo kill -s HUP "$(cat /var/run/nginx.pid)"
+sudo service nginx restart
