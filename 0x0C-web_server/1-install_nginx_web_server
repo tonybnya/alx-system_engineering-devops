@@ -8,11 +8,11 @@ sudo apt -y update && sudo apt -y install nginx
 # Performing some setting
 echo -e "\nPerforming some setting.\n"
 
-# Adjusting the Firewall
-sudo ufw allow 'Nginx HTTP'
-
 # Starting Nginx
 sudo service nginx start
+
+# Adjusting the Firewall
+sudo ufw allow 'Nginx HTTP'
 
 # Assigning ownership with the $USER environment variable
 sudo chown -R "$USER":"$USER" /var/www/html
