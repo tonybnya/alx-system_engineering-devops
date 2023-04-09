@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 # Install Nginx where it should be listening on port 80
 
-# Update package list and install Nginx
-apt-get update
-apt-get install nginx -y
+# Install Nginx
+sudo apt-get update
+sudo apt-get install nginx -y
 
 # Configure Nginx to listen on port 80
-sed -i "s/listen\s*80;/listen 80 default_server;/g" /etc/nginx/sites-available/default
+sudo sed -i "s/listen\s*80;/listen 80 default_server;/g" /etc/nginx/sites-available/default
 
 # Restart Nginx
-service nginx start
+sudo service nginx start
 
-# Create afile containing "Hello World!"
-echo "Hello World!" | tee /var/www/html/index.html > dev null
+# Create a file containing the string "Hello World!"
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Test Nginx querying its root with curl
+curl http://localhost/
