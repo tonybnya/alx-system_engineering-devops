@@ -3,9 +3,11 @@
 # Querying Nginx at its root / with a GET request using curl,
 # must return a page that contains the string 'Hello World!'
 
+# Update package list
+sudo apt-get update
+
 # Install nginx
-sudo apt-get update -y -qq
-sudo apt-get -y install nginx
+sudo apt-get install nginx -y
 
 # Start Nginx
 sudo service nginx start
@@ -18,10 +20,10 @@ sudo chown -R "$USER":"$USER" /var/www/html
 sudo chmod -R 755 /var/www
 
 # Create index.html file with Hello World!
-echo -e "Hello World!" | sudo tee /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # Configure Nginx to listen on port 80
 sudo sed -i "s/listen 80 default_server;/listen 80;/g" /etc/nginx/sites-available/default
 
 # Restart Nginx
-sudo service nginx restart
+sudo kill -s HUP "$(cat /var/run/nginx.pid)"
