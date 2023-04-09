@@ -9,9 +9,13 @@ sudo apt-get -y install nginx
 # Adjust Firewall to allow access to Nginx
 sudo ufw allow 'Nginx HTTP'
 
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
 # Create a 404.html file containing the given string
 echo "Ceci n'est pas une page" | sudo tee /var/www/nginx/html/error_404.html
-sudo sed -i "25i\       error_page 404 /error_404.html;" /etc/nginx/sites-available/default
+sudo sed -i "25i\   error_page 404 /error_404.html;" /etc/nginx/sites-available/default
 
 # Start Nginx
 sudo service nginx start
