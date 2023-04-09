@@ -1,19 +1,10 @@
 #!/usr/bin/env bash
-# Configure Nginx to have a custion 404 page that contains
-# the string "Ceci n'est pas une page"
+# Script that installs Nginx server, redirects /redirect_me and customizes 404 not found
 
-# Install Nginx
 sudo apt-get -y update
 sudo apt-get -y install nginx
-
-# Adjust Firewall to allow access to Nginx
 sudo ufw allow 'Nginx HTTP'
-
-# Create a 404.html file containing the given string
 echo "Ceci n'est pas une page" | sudo tee /usr/share/nginx/html/404.html
-
-# Add the error_page directive to the Nginx configuration file
-sudo sed -i 's/#error_page 404/error_page 404 \/\n        location \/404.html {\n        internal;\n        }/g' /etc/nginx/sites-enabled/default
-
-# Start Nginx
-sudo service nginx start
+newlines="\\\terror_page 404 /404.html;\n\tlocation = /404.html {\n\t\troot /usr/share/nginx/html;\n\t\tinternal;\n\t}"
+sudo sed -i "27i $newlines" /etc/nginx/sites-available/default
+sudo service nginx restart inside and outside the server.
