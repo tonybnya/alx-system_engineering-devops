@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Using the script 0-nginx_likes_port_80 to make fix short and sweet
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx start
+kill "$(grep 'nginx' | head -1)"
