@@ -1,23 +1,31 @@
 #!/usr/bin/env bash
 # print domains and subdomains
 
-function check_dns_record {
-    local domain=$1
-    local subdomain=$2
-    local record_type=$3
+# Define function to query DNS records and output information
+print_domain_subdomain () {
+    # Query DNS records for the subdomain and extract the relevant information
+    # answer=$(dig "$1" +short)
+    type=$(dig "$1" +short | awk 'NR==1{print $2}')
+    destination=$(dig "$1" +short | awk 'NR==1{print $1}')
 
-    if [ -z "$subdomain" ]; then
-        subdomains=("www" "lb-01" "web-01" "web-02")
-    else
-        subdomains=("$subdomain")
-    fi
-
-    for sub in "${subdomains[@]}"; do
-        result=$(nslookup -type="$record_type" "$sub.$domain" | awk '/^'"$sub"'/ {print $NF}')
-        echo "The subdomain $sub is a $record_type record and points to $result"
-    done
+    # Output the information in the desired format
+    echo "The subdomain $2 is a $type record and points to $destination"
 }
 
-domain=$1
-subdomain=$2
-check_dns_record "$domain" "$subdomain" "A"
+# Check for correct number of arguments
+if [ "$#" -eq 1 ]
+then
+    # Output information for default subdomains
+    print_domain_subdomain "www.$1" "www"
+    print_domain_subdomain "lb-01.$1" "lb-01"
+    print_domain_subdomain "web-01.$1" "web-01"
+    print_domain_subdomain "web-02.$1" "web-02"
+elif [ "$#" -eq 2 ]
+then
+    # Output information for specified subdomain
+    print_domain_subdomain "$2.$1" "$2"
+else
+    # Display usage information if incorrect number of arguments provided
+    echo "Usage: $0 domain [subdomain]"
+    exit 1
+fi
