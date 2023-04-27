@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# whoiam command running with or without argument
+
+sudo -u "$1" whoiam
