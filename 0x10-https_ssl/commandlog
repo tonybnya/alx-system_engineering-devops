@@ -4,7 +4,7 @@ sudo apt-get remove certbot
 sudo apt-get install certbot
 
 # At this stage, stop haproxy 'sudo service haproxy stop'
-sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d example.com -d www.example.com
+sudo certbot certonly --standalone --preferred-challenges http --http-01-port 80 -d tonybnya.tech -d www.tonybnya.tech
 sudo ls /etc/letsencrypt/live/tonybnya.tech
 sudo mkdir -p /etc/haproxy/certs
 DOMAIN='tonybnya.tech' sudo -E bash -c 'cat /etc/letsencrypt/live/$DOMAIN/fullchain.pem /etc/letsencrypt/live/$DOMAIN/privkey.pem > /etc/haproxy/certs/$DOMAIN.pem'
