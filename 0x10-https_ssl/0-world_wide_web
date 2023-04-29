@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 # print domains and subdomains
 
-print_domain_subdomain () {
-    dig "$1" | grep -A1 'ANSWER SECTION:' | sed -r "s/$1./$2/g" | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+print_sub ()
+{
+	dig "$2.$1" | grep -A1 'ANSWER SECTION' | tail -n 1 | awk -v var="$2" '{print "The subdomain " var " is a " $4 " record and points to", $5}'
 }
 
-if [ "$#" -eq 2 ]
+SUB1="www"
+SUB2="lb-01"
+SUB3="web-01"
+SUB4="web-02"
+
+if [ -z "$2" ]
 then
-    print_domain_subdomain "$2.$1" "$2"
+	print_sub "$1" "$SUB1"
+   	print_sub "$1" "$SUB2"
+   	print_sub "$1" "$SUB3"
+   	print_sub "$1" "$SUB4"
 else
-    print_domain_subdomain "www.$1" "www"
-    print_domain_subdomain "lb-01.$1" "lb-01"
-    print_domain_subdomain "web-01.$1" "web-01"
-    print_domain_subdomain "web-02.$1" "web-02"
+	print_sub "$1" "$2"
 fi
