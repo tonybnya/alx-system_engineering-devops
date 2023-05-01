@@ -17,11 +17,10 @@ def main():
 		task.get('title') for task in todos if task.get('completed') is True
 	]
 	done = len(tasks)
+	name = users.get('name')
 	num = len(todos)
 
-	print("Employee {} is done with tasks({}:{})".format(
-		users.get('name'), done, num)
-	)
+	print("Employee {} is done with tasks({}:{})".format(name, done, num))
 
 	for task in tasks:
 		print("\t{}".format(task))
