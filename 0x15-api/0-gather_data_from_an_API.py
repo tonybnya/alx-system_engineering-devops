@@ -24,8 +24,8 @@ def main():
 	)
 
 	for task in tasks:
-		print(f"\t{task}")
+		print("\t{}".format(task))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
 	main()
