@@ -1,22 +1,26 @@
 #!/usr/bin/python3
 """
-This Python script uses a REST API for a given employee ID,
+This Python script uses a REST API for a given employee id_,
 and returns the information about his/her TODO list progress.
 """
 import requests
 import sys
-URL = 'https://jsonplaceholder.typicode.com/'
 
 
-def main():
-	'''Main function.'''
-	ID = sys.argv[1]
-	users = requests.get("{}users/{}".format(URL, ID)).json()
-	todos = requests.get("{}todos/".format(URL), params={'userId': ID}).json()
-	tasks = [
+if __name__ == "__main__":
+	URL = 'https://jsonplaceholder.typicode.com/'
+	users_url = URL + 'users'
+	todos_url = URL + 'todos'
+	id_ = sys.argv[1]
+
+	users = requests.get(users_url + "/{}".format(users_url)).json()
+	todos = requests.get(todos_url, params={"userId": id_}).json()
+
+	completed_tasks = [
 		task.get('title') for task in todos if task.get('completed') is True
 	]
-	done = len(tasks)
+
+	done = len(completed_tasks)
 	name = users.get('name')
 	num = len(todos)
 
@@ -24,7 +28,3 @@ def main():
 
 	for task in tasks:
 		print("\t{}".format(task))
-
-
-if __name__ == "__main__":
-	main()
