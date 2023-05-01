@@ -11,8 +11,6 @@ URL = 'https://jsonplaceholder.typicode.com/'
 def main():
 	'''Main function.'''
 	ID = sys.argv[1]
-	# users = requests.get(f"{URL}users/{ID}").json()
-	# todos = requests.get(f"{URL}todos/", params={'userId': ID}).json()
 	users = requests.get("{}users/{}".format(URL, ID)).json()
 	todos = requests.get("{}todos/".format(URL), params={'userId': ID}).json()
 	tasks = [
@@ -21,7 +19,6 @@ def main():
 	done = len(tasks)
 	num = len(todos)
 
-	# print(f"Employee {users.get('name')} is done withs tasks({done}:{num})")
 	print("Employee {} is done withs tasks({}:{})".format(
 		users.get('name'), done, num)
 	)
