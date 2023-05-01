@@ -19,7 +19,7 @@ def main():
 	done = len(tasks)
 	num = len(todos)
 
-	print("Employee {} is done withs tasks({}:{})".format(
+	print("Employee {} is done with tasks({}:{})".format(
 		users.get('name'), done, num)
 	)
 
