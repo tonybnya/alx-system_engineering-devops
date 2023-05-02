@@ -12,10 +12,10 @@ import sys
 if __name__ == "__main__":
     URL = 'https://jsonplaceholder.typicode.com/'
     id_ = sys.argv[1]
-    users_url = URL + 'users/' + id_
+    user_url = URL + 'users/' + id_
     tasks_url = URL + 'todos'
 
-    user = requests.get(users_url).json()
+    user = requests.get(user_url).json()
     name = user.get('username')
     tasks = requests.get(tasks_url, params={"userId": id_}).json()
 
@@ -23,4 +23,4 @@ if __name__ == "__main__":
         for task in tasks:
             status = task.get("completed")
             title = task.get("title")
-            obj.write('"{}","{}","{}","{}"'.format(id_, name, status, title))
+            obj.write('"{}","{}","{}","{}"\n'.format(id_, name, status, title))
