@@ -20,7 +20,7 @@ if __name__ == "__main__":
         id_ = user.get("id")
         name = user.get("username")
         user_url = "{}/{}".format(users_url, id_)
-        todos_url = "{}/todos".format(user_url)
+        todos_url = "{}/todos/".format(user_url)
         tasks = requests.get(todos_url).json()
 
         obj[id_] = []
