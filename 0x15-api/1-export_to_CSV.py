@@ -4,7 +4,6 @@
 This Python script uses 0-gather_data_from_an_API.py file,
 and export data in the CSV format.
 """
-import csv
 import requests
 import sys
 
