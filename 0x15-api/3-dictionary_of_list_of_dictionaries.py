@@ -11,29 +11,30 @@ import sys
 
 if __name__ == "__main__":
     URL = 'https://jsonplaceholder.typicode.com/'
+
     users_url = URL + 'users'
+    tasks_url = URL + 'todos'
+
     users = requests.get(users_url).json()
+    all_tasks = requests.get(tasks_url).json()
 
     obj = {}
 
     for user in users:
         id_ = user.get("id")
         name = user.get("username")
-        user_url = "{}/{}".format(users_url, id_)
-        todos_url = "{}/todos/".format(user_url)
-        tasks = requests.get(todos_url).json()
+        tasks = list(filter(lambda x: x.get("userId") == id_, all_tasks))
 
-        obj[id_] = []
+        data = list(map(
+            lambda x: {
+                "username": name,
+                "task": x.get("title"),
+                "completed": x.get("completed")
+            },
+            tasks
+        ))
 
-        for task in tasks:
-            status = task.get("completed")
-            title = task.get("title")
-
-            obj[id_].append({
-                "task": title,
-                "completed": status,
-                "username": name
-            })
+        obj["{}".format(id_)] = data
 
     with open("todo_all_employees.json" "w") as file:
         json.dump(obj, file)
