@@ -1,5 +1,3 @@
-# 0x19-postmortem
-
 ![](https://i.postimg.cc/dtrMWD8M/david-pupaza-he-Nw-Um-Et-Zzo-unsplash.jpg)
 
 ## Issue Summary:
