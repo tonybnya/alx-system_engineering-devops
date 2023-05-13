@@ -1,5 +1,7 @@
 # 0x19-postmortem
 
+![](https://i.postimg.cc/dtrMWD8M/david-pupaza-he-Nw-Um-Et-Zzo-unsplash.jpg)
+
 ## Issue Summary:
 - Duration of the outage: May 7, 2023, at 8:15 AM EDT - May 7, 2023, at 9:00 AM EDT
 - Impact: Users trying to access the second web server were unable to do so during the outage.
