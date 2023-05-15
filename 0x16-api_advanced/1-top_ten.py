@@ -19,4 +19,4 @@ def top_ten(subreddit):
     children = res.json().get('data').get('children')
 
     for child in children:
-        print(child.get('data').get('title'))
+        print(child.get('data', {}).get('title', None))
