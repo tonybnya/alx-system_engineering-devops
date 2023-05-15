@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# This script creates a file named the same as an argument entered in the
+# prompt shell
+
+read -rp "Enter a filename: " filename
+touch "$filename"
+chmod u+x "$filename"
+{
+    echo "#!/usr/bin/python3"
+    echo '"""'
+    echo "# $filename"
+    echo "# Author: @tonybnya"
+    echo ""
+    echo "Python script"
+    echo '"""'
+    echo "import requests"
+    echo "import sys"
+    echo ""
+    echo ""
+    echo "def number_of_subscribers(subreddit):"
+    echo '    """'
+    echo '    Main function'
+    echo '    """'
+    echo ""
+    echo ""
+    echo "if __name__ == '__main__':"
+    echo "    main()"
+} >> "$filename"
+
+vim "$filename"
