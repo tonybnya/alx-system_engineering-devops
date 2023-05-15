@@ -17,7 +17,6 @@ def top_ten(subreddit):
     headers = {'User-Agent': 'tonybnya'}
     res = requests.get(url, headers=headers)
     children = res.json().get('data').get('children')
-    # posts = res.json()
 
     for child in children:
         print(child.get('data').get('title'))
