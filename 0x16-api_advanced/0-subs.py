@@ -6,7 +6,6 @@
 Python script queries the Reddit API and returns the number of subscribers.
 """
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
