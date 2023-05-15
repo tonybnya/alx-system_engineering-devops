@@ -23,7 +23,8 @@ def count_words(subreddit, word_list, after='', count=0, words_count={}):
     res = requests.get(
         url,
         headers=headers,
-        params=params
+        params=params,
+        allow_redirects=False
     )
 
     try:
