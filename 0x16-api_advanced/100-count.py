@@ -25,8 +25,8 @@ def count_words(subreddit, word_list, after='', words={}):
                 print('{}: {}'.format(word[0], word[1]))
         return None
 
-    url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
-    headers = {'user-agent': 'tonybnya'}
+    url = 'https://reddit.com/r/{}/hot.json'.format(subreddit)
+    headers = {'User-Agent': 'tonybnya'}
     params = {'limit': 100, 'after': after}
     res = requests.get(
         url,
@@ -45,8 +45,9 @@ def count_words(subreddit, word_list, after='', words={}):
             title = child['data']['title']
             low = [word.lower() for word in title.split(' ')]
 
-            for word in words.keys():
+            for word in words:
                 words[word] += low.count(word)
+
     except Exception:
         return None
 
